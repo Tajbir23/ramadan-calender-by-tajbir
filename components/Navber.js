@@ -1,13 +1,16 @@
-import React from 'react'
+import RamadanDataContext from '@/pages/RamadanDataContext';
+import React, { useContext } from 'react'
 import { IoLocationOutline } from "react-icons/io5";
 function Navber() {
+  const {data, searchDistrict} = useContext(RamadanDataContext)
+  // console.log(data, searchDistrict);
   return (
     <>
     <div className="flex gap-5 justify-between items-center px-14 text-sm leading-4 text-white bg-green-600 max-md:flex-wrap max-md:px-5">
     <div className="flex gap-3.5 justify-between self-stretch max-md:flex-wrap max-md:max-w-full">
       <div className="flex gap-5 justify-between px-6 py-4 max-md:flex-wrap max-md:px-5 max-md:max-w-full">
         <div className="flex-auto">Support24@gmail.com</div>
-        <div className="flex-auto">Dhaka, Bangladesh</div>
+        <div className="flex-auto">{data?.district || searchDistrict}</div>
         <div className="font-black text-center"><IoLocationOutline/></div>
       </div>
       
@@ -18,8 +21,8 @@ function Navber() {
         className="my-auto w-28 max-w-full aspect-[3.03] hidden md:flex"
       />
     <div className=" gap-5 justify-between self-stretch my-auto text-white text-opacity-80 max-md:flex-wrap max-md:max-w-full hidden md:flex ">
-      <div className="flex-auto">Sunrise At: 5:15 AM</div>
-      <div className="flex-auto">Sunset At: 4:50 PM</div>
+      {/* <div className="flex-auto">Sunrise At: 5:15 AM</div>
+      <div className="flex-auto">Sunset At: 4:50 PM</div> */}
       <div className="flex-auto">Let’s Talk +88 019 123 456 71</div>
     </div>
   </div>
