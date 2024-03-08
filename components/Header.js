@@ -11,6 +11,7 @@ function Header() {
             <a href='#' className='font-semibold text-gray-800 hover:text-gray-900'>Planner</a>
             <a href='#' className='font-semibold text-gray-800 hover:text-gray-900'>Ramadan</a>
             <a href='#' className='font-semibold text-gray-800 hover:text-gray-900'>About</a>
+            <a href='/api-docs' className='font-semibold text-gray-800 hover:text-gray-900'>Api Docs</a>
           </div>
           <div className='flex space-x-4 md:space-x-6'>
             <span className='hidden md:inline-block font-semibold text-gray-800'>Now Time</span>
