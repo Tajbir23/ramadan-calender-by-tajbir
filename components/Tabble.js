@@ -1,13 +1,14 @@
 // components/Table.js
 
-import React from 'react';
+import RamadanDataContext from '@/pages/RamadanDataContext';
+import React, { useContext } from 'react';
 
-const data = [
-  { date: '2024-03-01', day: 'Monday', sehar: '5:00 AM', dhuhr: '1:00 PM', asr: '4:30 PM', iftar: '6:45 PM', isha: '8:30 PM' },
-  // Add more date rows as needed
-];
 
 const Table = () => {
+  const {data} = useContext(RamadanDataContext)
+  // console.log(data?.data);
+  // console.log(data?.data?.date?.gregorian?.weekday?.en)
+  // console.log(data?.data?.timings)
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border-collapse shadow-lg rounded-lg">
@@ -23,17 +24,17 @@ const Table = () => {
           </tr>
         </thead>
         <tbody className="text-gray-700">
-          {data.map(row => (
-            <tr key={row.date}>
-              <td className="py-3 px-4 border">{row.date}</td>
-              <td className="py-3 px-4 border">{row.day}</td>
-              <td className="py-3 px-4 border">{row.sehar}</td>
-              <td className="py-3 px-4 border">{row.dhuhr}</td>
-              <td className="py-3 px-4 border">{row.asr}</td>
-              <td className="py-3 px-4 border">{row.iftar}</td>
-              <td className="py-3 px-4 border">{row.isha}</td>
+          
+            <tr >
+              <td className="py-3 px-4 border">{data?.data?.data?.date?.gregorian?.date}</td>
+              <td className="py-3 px-4 border">{data?.data?.data?.date?.gregorian?.weekday?.en}</td>
+              <td className="py-3 px-4 border">{data?.data?.data?.timings?.Imsak}</td>
+              <td className="py-3 px-4 border">{data?.data?.data?.timings?.Dhuhr}</td>
+              <td className="py-3 px-4 border">{data?.data?.data?.timings?.Asr}</td>
+              <td className="py-3 px-4 border">{data?.data?.data?.timings?.Maghrib}</td>
+              <td className="py-3 px-4 border">{data?.data?.data?.timings?.Isha}</td>
             </tr>
-          ))}
+          
         </tbody>
       </table>
     </div>

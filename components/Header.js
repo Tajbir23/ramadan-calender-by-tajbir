@@ -1,6 +1,9 @@
-import React from 'react';
+import RamadanDataContext from '@/pages/RamadanDataContext';
+import React, { useContext, useEffect, useState } from 'react';
 
 function Header() {
+
+  const {currentPosition, searchDistrict} = useContext(RamadanDataContext)
   return (
     <div className='bg-white shadow-md'>
       <div className='container mx-auto max-w-6xl px-4'>
@@ -15,7 +18,7 @@ function Header() {
           </div>
           <div className='flex space-x-4 md:space-x-6'>
             <span className='hidden md:inline-block font-semibold text-gray-800'>Now Time</span>
-            <span className='hidden md:inline-block font-semibold text-red-500'>Current Location</span>
+            <span className='hidden md:inline-block font-semibold text-red-500'>{currentPosition ? 'Current Location' : searchDistrict}</span>
           </div>
           <button className='md:hidden text-gray-800'>
             <svg className='h-6 w-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
