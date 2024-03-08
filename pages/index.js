@@ -25,7 +25,7 @@ export default function Home() {
       const lat = position.coords.latitude;
       const long = position.coords.longitude;
 
-      fetch(`http://localhost:3001/locations?lat=${lat}&long=${long}`)
+      fetch(`https://ramadan-server-by-tajbir.vercel.app/locations?lat=${lat}&long=${long}`)
         .then((res) => res.json())
         .then((datas) => setData(datas))
         .catch((err) => console.log(err));
@@ -34,7 +34,7 @@ export default function Home() {
     function error(error) {
       if (error) {
         const district = searchDistrict;
-        fetch(`http://localhost:3001/district?district=${district}`)
+        fetch(`https://ramadan-server-by-tajbir.vercel.app/district?district=${district}`)
           .then((res) => res.json())
           .then((datas) => setData(datas))
           .catch((err) => console.log(err));
