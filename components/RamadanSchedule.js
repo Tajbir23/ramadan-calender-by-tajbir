@@ -1,9 +1,8 @@
-import RamadanDataContext from '@/pages/RamadanDataContext';
-import React, { useState, useEffect, useContext } from 'react';
+import RamadanDataContext from "@/components/RamadanDataContext";
+import React, { useState, useEffect, useContext } from "react";
 
 const RamadanSchedule = () => {
-  
-  const {data} = useContext(RamadanDataContext)
+  const { data } = useContext(RamadanDataContext);
 
   return (
     <div>
@@ -17,13 +16,11 @@ const RamadanSchedule = () => {
           </tr>
         </thead>
         <tbody>
-          
-            <tr  className='border-2 justify-between'>
-              <td>hi</td>
-              <td>hello</td>
-              <td>hey</td>
-            </tr>
-          
+          <tr className="border-2 justify-between">
+            <td>hi</td>
+            <td>hello</td>
+            <td>hey</td>
+          </tr>
         </tbody>
       </table>
     </div>
