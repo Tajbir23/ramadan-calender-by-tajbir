@@ -1,14 +1,19 @@
 import RamadanDataContext from "@/components/RamadanDataContext";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 
 function Sections() {
   const [district, setDistrict] = useState("");
 
-  const { setSearchDistrict } = useContext(RamadanDataContext);
+  const { setSearchDistrict, setCurrentPosition } = useContext(RamadanDataContext);
 
   const handleDistrict = (e) => {
     e.preventDefault();
+    console.log("click");
+    // navigator.geolocation.clearWatch(null);
+    setCurrentPosition(false)
     setSearchDistrict(district);
+    console.log(district);
+    // setDistrict("");
   };
   return (
     <div className="flex overflow-hidden relative flex-col justify-center items-center px-16  font-semibold text-center h-[400px] max-md:px-5">
@@ -21,12 +26,13 @@ function Sections() {
       {/*  */}
       <div className="flex flex-col md:flex-row relative justify-items-start container mx-auto max-w-6xl gap-2 ">
         <div>
-          <h1 className="text-white my-2">Search your Location </h1>
+          <h1 className="text-white">Search your Location </h1>
           <form onSubmit={handleDistrict} className="flex">
             <input
               type="text"
+              value={district}
               onChange={(e) => setDistrict(e.target.value)}
-              placeholder="search here"
+              placeholder="search your location"
               className="w-full p-2 rounded-md"
             />
             <button
