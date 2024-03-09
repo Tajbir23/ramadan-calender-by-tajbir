@@ -17,14 +17,27 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [data, setData] = useState();
   const [searchDistrict, setSearchDistrict] = useState("dhaka");
-  const [currentPosition, setCurrentPosition] = useState(false);
+  const [currentPosition, setCurrentPosition] = useState(true);
+
+  console.log(currentPosition)
 
   useEffect(() => {
-    if (navigator.geolocation) {
+    if (navigator.geolocation && currentPosition) {
       navigator.geolocation.watchPosition(showPosition, error);
+    }else{
+      setCurrentPosition(false)
+      
+      const district = searchDistrict;
+        
+        fetch(
+          `https://ramadan-server-by-tajbir.vercel.app/district?district=${district}`
+        )
+          .then((res) => res.json())
+          .then((datas) => setData(datas))
+          .catch((err) => console.log(err));
     }
     function showPosition(position) {
-      setCurrentPosition(true);
+      // setCurrentPosition(true);
 
       const lat = position.coords.latitude;
       const long = position.coords.longitude;
@@ -39,8 +52,9 @@ export default function Home() {
 
     function error(error) {
       if (error) {
+        setCurrentPosition(false)
         const district = searchDistrict;
-        // console.log(district)
+        
         fetch(
           `https://ramadan-server-by-tajbir.vercel.app/district?district=${district}`
         )
@@ -49,7 +63,7 @@ export default function Home() {
           .catch((err) => console.log(err));
       }
     }
-  });
+  },[currentPosition]);
 
   // console.log(data);
   return (
@@ -61,6 +75,7 @@ export default function Home() {
           setSearchDistrict,
           searchDistrict,
           currentPosition,
+          setCurrentPosition
         }}
       >
         <Navber />
