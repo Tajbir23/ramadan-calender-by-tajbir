@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
@@ -28,7 +29,9 @@ export default function Home() {
       const lat = position.coords.latitude;
       const long = position.coords.longitude;
 
-      fetch(`https://ramadan-server-by-tajbir.vercel.app/locations?lat=${lat}&long=${long}`)
+      fetch(
+        `https://ramadan-server-by-tajbir.vercel.app/locations?lat=${lat}&long=${long}`
+      )
         .then((res) => res.json())
         .then((datas) => setData(datas))
         .catch((err) => console.log(err));
@@ -38,7 +41,9 @@ export default function Home() {
       if (error) {
         const district = searchDistrict;
         // console.log(district)
-        fetch(`https://ramadan-server-by-tajbir.vercel.app/district?district=${district}`)
+        fetch(
+          `https://ramadan-server-by-tajbir.vercel.app/district?district=${district}`
+        )
           .then((res) => res.json())
           .then((datas) => setData(datas))
           .catch((err) => console.log(err));
@@ -62,7 +67,9 @@ export default function Home() {
         <Header />
         {/* <Slider/> */}
         <Sections />
-        <Catagory />
+        <div className="py-4 bg-white">
+          <Catagory />
+        </div>
         <Table />
         <Footer />
       </RamadanDataContext.Provider>

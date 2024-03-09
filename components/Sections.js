@@ -1,5 +1,5 @@
 import RamadanDataContext from "@/components/RamadanDataContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 function Sections() {
   const [district, setDistrict] = useState("");
@@ -21,12 +21,12 @@ function Sections() {
       {/*  */}
       <div className="flex flex-col md:flex-row relative justify-items-start container mx-auto max-w-6xl gap-2 ">
         <div>
-          <h1 className="text-white">Search your Location </h1>
+          <h1 className="text-white my-2">Search your Location </h1>
           <form onSubmit={handleDistrict} className="flex">
             <input
               type="text"
               onChange={(e) => setDistrict(e.target.value)}
-              placeholder="search your location"
+              placeholder="search here"
               className="w-full p-2 rounded-md"
             />
             <button

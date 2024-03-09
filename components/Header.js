@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="bg-white shadow-md">
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-4 overflow-hidden ">
           <div className="flex space-x-4">
             <a
               href="#"
