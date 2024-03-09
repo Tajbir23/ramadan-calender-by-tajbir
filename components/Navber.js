@@ -3,6 +3,8 @@ import React, { useContext } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 function Navber() {
   const { data, searchDistrict } = useContext(RamadanDataContext);
+  const newData = data?.district?.toUpperCase();
+  const newSearchDistrict = searchDistrict?.toUpperCase();
   // console.log(data, searchDistrict);
   return (
     <>
@@ -10,7 +12,7 @@ function Navber() {
         <div className="flex gap-3.5 justify-between self-stretch max-md:flex-wrap max-md:max-w-full">
           <div className="flex gap-5 justify-between px-6 py-4 max-md:flex-wrap max-md:px-5 max-md:max-w-full">
             <div className="flex-auto">contact@tajbirideas.com</div>
-            <div className="flex-auto">{data?.district || searchDistrict}</div>
+            <div className="flex-auto font-semibold -tracking-tight">{newData || newSearchDistrict}</div>
             <div className="font-black text-center">
               <IoLocationOutline />
             </div>
