@@ -11,14 +11,13 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDSvetzdKTKLeSHhN2UeMOQPAjDwRpj1zQ",
-  databaseURL: "https://bdjobs-d0441-default-rtdb.asia-southeast1.firebasedatabase.app",
-  authDomain: "bdjobs-d0441.firebaseapp.com",
-  projectId: "bdjobs-d0441",
-  storageBucket: "bdjobs-d0441.appspot.com",
-  messagingSenderId: "256516028421",
-  appId: "1:256516028421:web:c545e86d25ac4cd47dc46c",
-  measurementId: "G-6931W3NMJ9"
+  apiKey: "AIzaSyAP1I1BQu1c12Z44KjXIxqWwTaGC3XtVLw",
+  authDomain: "ramadan-a3314.firebaseapp.com",
+  projectId: "ramadan-a3314",
+  storageBucket: "ramadan-a3314.appspot.com",
+  messagingSenderId: "442807278507",
+  appId: "1:442807278507:web:8df72ab34b2660cd6510ee",
+  measurementId: "G-3PGB9QZ911"
 };
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();

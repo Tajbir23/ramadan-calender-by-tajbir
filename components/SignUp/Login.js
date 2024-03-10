@@ -3,8 +3,7 @@ import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase";
-import { push } from "firebase/database";
-import { useRef } from "react";
+
 
 function Login() {
   const router = useRouter();
@@ -13,16 +12,16 @@ function Login() {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
+      .then(async (result) => {
+        const user = await result.user;
         // Handle successful sign-in
-        push(useRef, user)
-          .then(() => {
-            console.log("Data pushed successfully");
-          })
-          .then(() => {
-            router.push("/home");
-          });
+
+        fetch(`https://ramadan-server-by-tajbir.vercel.app/api/account?name=${user.displayName}&email=${user.email}&uid=${user.uid}`)
+        .then(response => response.json())
+        .then(data => {
+          router.push(`/docs?name=${data.name}&email=${data.email}&uid=${data.uid}`)
+        })
+        .catch((err) => console.log(err));
 
         // console.log(uid);
       })
@@ -53,9 +52,7 @@ function Login() {
                   </h1>
                 </div>
                 <div>
-                  {/* <button className="flex items-center justify-center w-full bg-gray-300 rounded-md py-2 px-4 mt-4 gap-2">
-                    <FaFacebook /> Login with Facebook
-                  </button> */}
+                  
                   <button
                     className="flex items-center w-full justify-center bg-gray-300 rounded-md py-2 px-4 mt-2 gap-2"
                     onClick={googleSignIn}
@@ -63,27 +60,7 @@ function Login() {
                     <FaGoogle /> Login with Google
                   </button>
                 </div>
-                {/* <div className="flex items-center justify-center gap-2 mt-2">
-                  <div class="h-0.5 w-24 border-t-2 border-gray-300"></div>
-                  <h1 className="flex items-center justify-center">or</h1>
-                  <div className="h-0.5 w-24 border-t-2 border-gray-300"></div>
-                </div> */}
-                {/* <div>
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    className="w-full p-2 border-2 rounded-md"
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    className="w-full p-2 border-2 rounded-md mt-2"
-                  />
-                  <h1 className="flex justify-end">Forgot password</h1>
-                </div> */}
-                {/* <div className="flex items-center justify-center bg-gray-300 rounded-md py-2 px-4 mt-4 hover:bg-blue-700">
-                  <button className="flex text-center ">Login</button>
-                </div> */}
+                
               </div>
             </div>
           </div>
