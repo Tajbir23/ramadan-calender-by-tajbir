@@ -9,7 +9,7 @@ const accountSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    uid: {
+    uuid: {
         type: String,
         required: true
     }

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const routes = require("./routes");
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 const bodyParser = require("body-parser");
 const { default: mongoose } = require("mongoose");
@@ -15,7 +15,10 @@ const corsOptions = {
   credentials: true,
 };
 
+
 app.use("/api", routes);
+
+
 app.get("/", (req, res) => {
   res.send("server is running root directory there is no data");
 });
@@ -30,7 +33,7 @@ app.get("/locations", cors(corsOptions), async (req, res) => {
   };
   const getAddress = await address();
 
-//   console.log(getAddress);
+  console.log(lat, long);
   const district = getAddress.address.state_district
     .split(" ")[0]
     .toLocaleLowerCase();
@@ -55,9 +58,11 @@ app.get("/district", cors(corsOptions), async (req, res) => {
   );
   const item = await response.json();
   const data = await item;
-//   console.log(district); 
+  console.log(district); 
   res.send({data});
 });
+
+
 
 const connection = async () => {
   await mongoose
