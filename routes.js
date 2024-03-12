@@ -10,7 +10,7 @@ const userCors = {
 
 router.use("/account", cors(userCors), async (req, res) => {
   const { name, email, uuid } = req.query;
-
+  console.log(name, email, uuid);
   try {
     const account = await AccountSchema.create({
       name,
