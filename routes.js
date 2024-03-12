@@ -24,7 +24,7 @@ router.use("/account", cors(userCors), async (req, res) => {
     // } else {
     //   res.send("unauthorize access");
     // }
-    res.send(req.query)
+    res.send(account)
   } catch (error) {
     res.status(400).send(error);
   }
