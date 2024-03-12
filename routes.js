@@ -11,7 +11,7 @@ const userCors = {
 router.use("/account", cors(userCors), async (req, res) => {
   const { name, email, uuid } = req.query;
   console.log(name, email, uuid);
-  
+  try {
     const account = await AccountSchema.create({
       name,
       email,
@@ -19,14 +19,15 @@ router.use("/account", cors(userCors), async (req, res) => {
     });
 
     console.log(account);
-    if (account) {
-      res.send(account);
-    } else {
-      res.send("unauthorize access");
-    }
-    // res.send(account)
- 
-  
+    // if (account) {
+    //   res.send(account);
+    // } else {
+    //   res.send("unauthorize access");
+    // }
+    res.send(account)
+  } catch (error) {
+    res.status(400).send(error);
+  }
 });
 
 router.get("/account/district", async (req, res) => {
