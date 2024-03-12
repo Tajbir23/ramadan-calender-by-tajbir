@@ -8,10 +8,9 @@ const userCors = {
   credentials: true,
 };
 
-router.get("/account", cors(userCors), async (req, res) => {
+router.post("/account", cors(userCors), async (req, res) => {
   const { name, email, uuid } = req.query;
 
-  console.log(name, email, uuid);
   try {
     const account = await AccountSchema.create({
       name,
