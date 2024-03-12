@@ -19,12 +19,12 @@ router.use("/account", cors(userCors), async (req, res) => {
     });
 
     console.log(account);
-    // if (account) {
-    //   res.send(account);
-    // } else {
-    //   res.send("unauthorize access");
-    // }
-    res.send(account)
+    if (account) {
+      res.send(account);
+    } else {
+      res.send("unauthorize access");
+    }
+    // res.send(account)
   } catch (error) {
     res.status(400).send(error);
   }
