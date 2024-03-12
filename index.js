@@ -16,7 +16,7 @@ const corsOptions = {
 };
 
 
-app.use("/api", routes);
+app.use(routes);
 
 
 app.get("/", (req, res) => {
@@ -67,11 +67,7 @@ app.get("/district", cors(corsOptions), async (req, res) => {
 const connection = async () => {
   await mongoose
     .connect(
-      "mongodb+srv://tajbir:y6mcEooEI4Is8FCb@cluster0.g1xrt1f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
+      "mongodb+srv://tajbir:y6mcEooEI4Is8FCb@cluster0.g1xrt1f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     )
     .then(() => {
       console.log("connected to db");
