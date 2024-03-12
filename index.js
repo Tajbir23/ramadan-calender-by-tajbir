@@ -44,10 +44,24 @@ app.get("/locations", cors(corsOptions), async (req, res) => {
     const data = await response.json();
     return data;
   };
+
+  const tomorrow = async () => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const dateString = `${year}-${month}-${day}`;
+    const url = `https://api.aladhan.com/v1/calendarByCity?city=${district}&country=bd&date=${dateString}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  };
   const data = await ramadanTime();
+  const tomorrowData = await tomorrow();
 
   res.send({
-    data, district
+    data,tomorrowData, district
   });
 });
 
@@ -58,8 +72,23 @@ app.get("/district", cors(corsOptions), async (req, res) => {
   );
   const item = await response.json();
   const data = await item;
+
+  const tomorrow = async () => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const dateString = `${year}-${month}-${day}`;
+    const url = `https://api.aladhan.com/v1/calendarByCity?city=${district}&country=bd&date=${dateString}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  };
+
+  const tomorrowData = await tomorrow();
   console.log(district); 
-  res.send({data});
+  res.send({data,tomorrowData});
 });
 
 

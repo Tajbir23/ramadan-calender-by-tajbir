@@ -8,7 +8,7 @@ const userCors = {
   credentials: true,
 };
 
-router.post("/account", cors(userCors), async (req, res) => {
+router.use("/account", cors(userCors), async (req, res) => {
   const { name, email, uuid } = req.query;
 
   try {
