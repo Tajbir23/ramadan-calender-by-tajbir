@@ -42,8 +42,16 @@ router.get("/account/district", async (req, res) => {
         const data = await response.json();
         return data;
       };
+
+      const ramadanFullMonth = async () => {
+        const url = `https://api.aladhan.com/v1/calendarByCity?city=${district}&country=bd&date=today`;
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+      };
       const ramadanDataByTajbir = await ramadanTime();
-      res.send(ramadanDataByTajbir);
+      const ramadanFullMonthDataByTajbir = await ramadanFullMonth();
+      res.send({ramadanDataByTajbir, ramadanFullMonthDataByTajbir});
     } else {
       res.send("unauthorize access");
     }
