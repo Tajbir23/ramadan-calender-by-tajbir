@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase";
 
-
 function Login() {
   const router = useRouter();
 
@@ -15,13 +14,22 @@ function Login() {
       .then(async (result) => {
         const user = await result.user;
         // Handle successful sign-in
+        // console.log(user.uid);
 
-        fetch(`https://ramadan-server-by-tajbir.vercel.app/api/account?name=${user.displayName}&email=${user.email}&uid=${user.uid}`)
-        .then(response => response.json())
-        .then(data => {
-          router.push(`/docs?name=${data.name}&email=${data.email}&uid=${data.uid}`)
-        })
-        .catch((err) => console.log(err));
+        if(user){
+          console.log(user);
+          await fetch(
+            `https://ramadan-calender-by-tajbir.onrender.com/account?name=${user.displayName}&email=${user.email}&uuid=${user.uid}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              router.push(
+                `/docs?name=${data.name}&email=${data.email}&uuid=${data.uuid}`
+              );
+              console.log(data);
+            })
+            .catch((err) => console.log(err.message));
+        }
 
         // console.log(uid);
       })
@@ -52,7 +60,6 @@ function Login() {
                   </h1>
                 </div>
                 <div>
-                  
                   <button
                     className="flex items-center w-full justify-center bg-gray-300 rounded-md py-2 px-4 mt-2 gap-2"
                     onClick={googleSignIn}
@@ -60,7 +67,6 @@ function Login() {
                     <FaGoogle /> Login with Google
                   </button>
                 </div>
-                
               </div>
             </div>
           </div>

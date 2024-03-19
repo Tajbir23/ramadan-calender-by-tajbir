@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 function Footer() {
   return (
     <div className="flex overflow-hidden relative flex-col justify-center items-center  font-semibold text-center h-[50px] max-md:px-5">

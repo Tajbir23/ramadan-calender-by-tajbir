@@ -1,18 +1,18 @@
 import RamadanDataContext from "@/components/RamadanDataContext";
 import React, { useContext } from "react";
 import { IoLocationOutline } from "react-icons/io5";
+
 function Navber() {
   const { data, searchDistrict, currentPosition } = useContext(RamadanDataContext);
   const newData = data?.district?.toUpperCase();
-  // const newSearchDistrict = searchDistrict?.toUpperCase();
-  // console.log(data, searchDistrict);
+  const newSearchDistrict = searchDistrict?.toUpperCase();
   return (
     <>
       <div className="flex gap-5 justify-between items-center px-14 text-sm leading-4 text-white bg-green-600 max-md:flex-wrap max-md:px-5">
         <div className="flex gap-3.5 justify-between self-stretch max-md:flex-wrap max-md:max-w-full">
           <div className="flex gap-5 justify-between px-6 py-4 max-md:flex-wrap max-md:px-5 max-md:max-w-full">
-            <div className="flex-auto">contact@tajbirideas.com</div>
-            <div className="flex-auto font-semibold -tracking-tight">{currentPosition ? newData : searchDistrict}</div>
+            <div className="flex-auto hidden sm:block">contact@tajbirideas.com</div>
+            <div className="flex-auto font-semibold -tracking-tight">{currentPosition ? newData : newSearchDistrict}</div>
             <div className="font-black text-center">
               <IoLocationOutline />
             </div>
@@ -26,7 +26,7 @@ function Navber() {
         <div className=" gap-5 justify-between self-stretch my-auto text-white text-opacity-80 max-md:flex-wrap max-md:max-w-full hidden md:flex ">
           {/* <div className="flex-auto">Sunrise At: 5:15 AM</div>
       <div className="flex-auto">Sunset At: 4:50 PM</div> */}
-          <div className="flex-auto">Let’s Talk +88 01763123739</div>
+          <div className="flex-auto hidden sm:block">Let’s Talk +88 01763123739</div>
         </div>
       </div>
     </>

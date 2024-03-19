@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import Table from "@/components/Tabble";
 import { useEffect, useState } from "react";
 import RamadanDataContext from "../components/RamadanDataContext";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function Home() {
   // console.log(searchDistrict)
 
   useEffect(() => {
-    if ( navigator.geolocation.watchPosition) {
+    if (navigator.geolocation.watchPosition) {
       // console.log(navigator.geolocation)
       navigator.geolocation.watchPosition(showPosition, error);
     }
@@ -33,7 +34,7 @@ export default function Home() {
       const long = position.coords.longitude;
 
       fetch(
-        `https://ramadan-server-by-tajbir.vercel.app/locations?lat=${lat}&long=${long}`
+        `https://ramadan-calender-by-tajbir.onrender.com/locations?lat=${lat}&long=${long}`
       )
         .then((res) => res.json())
         .then((datas) => setData(datas))
@@ -42,55 +43,67 @@ export default function Home() {
 
     function error(error) {
       if (error) {
-        setCurrentPosition(false)
+        setCurrentPosition(false);
         const district = searchDistrict;
-        
+
         fetch(
-          `https://ramadan-server-by-tajbir.vercel.app/district?district=${district}`
+          `https://ramadan-calender-by-tajbir.onrender.com/district?district=${district}`
         )
           .then((res) => res.json())
           .then((datas) => setData(datas))
           .catch((err) => console.log(err));
       }
     }
-  },[searchDistrict]);
+  }, [searchDistrict]);
 
-  useEffect(()=>{
+  useEffect(() => {
     // setCurrentPosition(false)
-      if(currentPosition === false){
-        const district = searchDistrict;
-      console.log(district)
+    if (currentPosition === false) {
+      const district = searchDistrict;
+      console.log(district);
       fetch(
-        `https://ramadan-server-by-tajbir.vercel.app/district?district=${district}`
+        `https://ramadan-calender-by-tajbir.onrender.com/district?district=${district}`
       )
         .then((res) => res.json())
         .then((datas) => setData(datas))
         .catch((err) => console.log(err));
-      }
-  },[currentPosition, searchDistrict])
-  console.log(currentPosition);
+    }
+  }, [currentPosition, searchDistrict]);
   return (
-    <div>
-      <RamadanDataContext.Provider
-        value={{
-          data,
-          setData,
-          setSearchDistrict,
-          searchDistrict,
-          currentPosition,
-          setCurrentPosition
-        }}
-      >
-        <Navber />
-        <Header />
-        {/* <Slider/> */}
-        <Sections />
-        <div className="py-4 bg-white">
-          <Catagory />
-        </div>
-        <Table />
-        <Footer />
-      </RamadanDataContext.Provider>
-    </div>
+    <>
+      <Head>
+        <title>Ramadan calender bangladesh time</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Ramadan calender bangladesh time" />
+        <meta
+          name="keywords"
+          content={`romjan, ramadan, bangladesh, time table, timetable, ${searchDistrict}, ${data?.data?.data?.date?.gregorian?.date}, ${data?.data?.data?.date?.gregorian?.weekday?.en}, romadan api, api, bangladesh api, ramadan data bangladesh api, romjan bangladesh api, ramadan bangladesh api`}
+        />
+        <meta author="Tajbir islam" />
+      </Head>
+      <div>
+        <RamadanDataContext.Provider
+          value={{
+            data,
+            setData,
+            setSearchDistrict,
+            searchDistrict,
+            currentPosition,
+            setCurrentPosition,
+          }}
+        >
+          <Navber />
+          <Header />
+          {/* <Slider/> */}
+          <Sections />
+          <div className="py-4 bg-white">
+            <Catagory />
+          </div>
+          <Table />
+          <Footer />
+        </RamadanDataContext.Provider>
+      </div>
+    </>
   );
 }
