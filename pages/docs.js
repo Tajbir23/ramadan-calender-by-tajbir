@@ -1,5 +1,4 @@
 import Documentation from '@/components/Documentation'
-import RamadanDataContext from '@/components/RamadanDataContext'
 import { useRouter } from 'next/router'
 import React from 'react'
 

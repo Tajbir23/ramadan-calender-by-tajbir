@@ -28,7 +28,7 @@ function Header() {
             >
               Home
             </a>
-            
+
             <Link href={`/ramadan/${district}`}> Ramadan </Link>
             <a
               href="#"
@@ -36,12 +36,12 @@ function Header() {
             >
               About
             </a>
-            <a
+            <Link
               href="/api-docs"
               className="font-semibold text-gray-800 hover:text-gray-900"
             >
               Api Docs
-            </a>
+            </Link>
           </div>
           <div className="flex space-x-4 md:space-x-6">
             <span className="hidden md:inline-block font-semibold text-gray-800">
@@ -51,7 +51,6 @@ function Header() {
               {currentPosition ? "Current Location" : searchDistrict}
             </span>
           </div>
-          
         </div>
       </div>
     </div>
