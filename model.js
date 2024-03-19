@@ -11,7 +11,7 @@ const AccountSchema = new mongoose.Schema({
     },
     uuid: {
         type: String,
-        required: true
+        // required: true
     }
 });
 

@@ -8,9 +8,9 @@ const userCors = {
   credentials: true,
 };
 
-router.use("/account", cors(userCors), async (req, res) => {
+router.get("/account", cors(userCors), async (req, res) => {
   const { name, email, uuid } = req.query;
-  console.log(name, email, uuid);
+  // console.log(name, email, uuid);
   try {
     const account = await AccountSchema.create({
       name,
@@ -18,7 +18,6 @@ router.use("/account", cors(userCors), async (req, res) => {
       uuid,
     });
 
-    console.log(account);
     if (account) {
       res.send(account);
     } else {
@@ -30,9 +29,9 @@ router.use("/account", cors(userCors), async (req, res) => {
   }
 });
 
-router.get("/account/district", async (req, res) => {
+router.use("/account/district", async (req, res) => {
   const { uid, district } = req.params;
-
+  console.log(uid)
   try {
     const account = await AccountSchema.findById(uid);
 
