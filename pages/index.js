@@ -2,11 +2,9 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
-import Slider from "@/components/Slider";
 import Sections from "@/components/Sections";
 import Navber from "@/components/Navber";
 import Catagory from "@/components/Catagory";
-import PrayerTimeTable from "@/components/RamadanSchedule";
 import Footer from "@/components/Footer";
 import Table from "@/components/Tabble";
 import { useEffect, useState } from "react";
@@ -23,6 +21,7 @@ export default function Home() {
   // console.log(searchDistrict)
 
   useEffect(() => {
+    
     if (navigator.geolocation.watchPosition) {
       // console.log(navigator.geolocation)
       navigator.geolocation.watchPosition(showPosition, error);
