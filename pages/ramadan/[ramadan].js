@@ -1,6 +1,5 @@
 import RamadanTime from "@/components/RamadanTime";
-import { useParams } from "next/navigation";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 
 const Ramadan = () => {
