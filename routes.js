@@ -29,7 +29,7 @@ router.get("/account", cors(userCors), async (req, res) => {
   }
 });
 
-router.use("/account/district", async (req, res) => {
+router.get("/account/district", async (req, res) => {
   const { uid, district } = req.params;
   console.log(uid)
   try {
