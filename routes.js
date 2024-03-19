@@ -30,10 +30,10 @@ router.get("/account", cors(userCors), async (req, res) => {
 });
 
 router.get("/account/district", async (req, res) => {
-  const { uid, district } = req.params;
+  const { uid, district } = req.query;
   console.log(uid)
   try {
-    const account = await AccountSchema.findById(uid);
+    const account = await AccountSchema.findOne({uuid: uid});
 
     if (account) {
       const ramadanTime = async () => {
